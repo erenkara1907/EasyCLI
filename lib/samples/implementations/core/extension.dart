@@ -38,7 +38,7 @@ class Extension extends Sample {
 
   // ignore: unused_element
   String get _content => '''
-import './constants/app_regex.dart';
+import '../constants/app_regex.dart';
 
 extension StringValidator on String {
   String? get isValidEmail {

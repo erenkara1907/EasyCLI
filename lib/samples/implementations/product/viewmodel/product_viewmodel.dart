@@ -35,7 +35,7 @@ class ProductViewmodel extends Sample {
 
   // ignore: unused_element
   String get _content => '''
-import '../../../core/viewmodel/base_view_model.dart';
+import '../../core/init/viewmodel/base_viewmodel.dart';
 
 class $dirName extends BaseViewModel {
  // Some code

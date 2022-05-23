@@ -2,9 +2,9 @@ import 'package:recase/recase.dart';
 import '../../../../utils/directory.dart';
 import '../../../sample.dart';
 
-class ProductService extends Sample {
+class ProductModel extends Sample {
   final String dirName;
-  ProductService(
+  ProductModel(
     String path,
     this.dirName,
   ) : super(path);

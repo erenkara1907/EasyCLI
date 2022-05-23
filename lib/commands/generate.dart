@@ -1,6 +1,7 @@
 import 'package:args/command_runner.dart';
 import '../samples/implementations/core/constants/app_icon.dart';
 import '../samples/implementations/core/constants/app_icon.svg.dart';
+import '../samples/implementations/core/constants/app_regex.dart';
 import '../samples/implementations/core/extension.dart';
 import '../samples/implementations/core/init/service/base_service.dart';
 import '../samples/implementations/core/init/service/dio_service.dart';
@@ -18,6 +19,12 @@ import '../samples/implementations/core/language.dart';
 import '../samples/implementations/core/manager/auth/auth_manager.dart';
 import '../samples/implementations/core/manager/cache/cache_manager.dart';
 import '../samples/implementations/core/model.dart';
+import '../samples/implementations/feature/components/button/app_text_button.dart';
+import '../samples/implementations/product/model/product_model.dart';
+import '../samples/implementations/product/service/product_service.dart';
+import '../samples/implementations/product/view/product_state_view.dart';
+import '../samples/implementations/product/view/product_stateless_view.dart';
+import '../samples/implementations/product/viewmodel/product_viewmodel.dart';
 import '../utils/directory.dart';
 import '../utils/logs.dart';
 
@@ -96,5 +103,19 @@ class GenerateCommand extends Command {
     AppIcon(DirectoryService.paths[dir]!, argResults!['name'].toString())..create();
     // ignore: lines_longer_than_80_chars
     AppIconSvg(DirectoryService.paths[dir]!, argResults!['name'].toString())..create();
+    // ignore: lines_longer_than_80_chars
+    AppRegex(DirectoryService.paths[dir]!, argResults!['name'].toString())..create();
+    // ignore: lines_longer_than_80_chars
+    AppTextButton(DirectoryService.paths[dir]!, argResults!['name'].toString())..create();
+    // ignore: lines_longer_than_80_chars
+    ProductModel(DirectoryService.paths[dir]!, argResults!['name'].toString())..create();
+    // ignore: lines_longer_than_80_chars
+    ProductService(DirectoryService.paths[dir]!, argResults!['name'].toString())..create();
+    // ignore: lines_longer_than_80_chars
+    ProductStateView(DirectoryService.paths[dir]!, argResults!['name'].toString())..create();
+    // ignore: lines_longer_than_80_chars
+    ProductStatelessView(DirectoryService.paths[dir]!, argResults!['name'].toString())..create();
+    // ignore: lines_longer_than_80_chars
+    ProductViewmodel(DirectoryService.paths[dir]!, argResults!['name'].toString())..create();
   }
 }

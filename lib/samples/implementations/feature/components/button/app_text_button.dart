@@ -2,9 +2,9 @@ import 'package:recase/recase.dart';
 import '../../../../../../../utils/directory.dart';
 import '../../../../sample.dart';
 
-class AppButton extends Sample {
+class AppTextButton extends Sample {
   final String dirName;
-  AppButton(
+  AppTextButton(
     String path,
     this.dirName,
   ) : super(path);
@@ -35,7 +35,7 @@ class AppButton extends Sample {
 
   // ignore: unused_element
   String get _content => '''
-import '../../../core/view/base/base_stateless.dart';
+import '../../../core/init/view/base/base_stateless.dart';
 import 'package:flutter/material.dart';
 
 class $dirName extends BaseStateless {

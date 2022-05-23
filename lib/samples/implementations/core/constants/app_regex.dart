@@ -33,10 +33,6 @@ class AppRegex extends Sample {
         path: '$path/core/' 'constants/app_regex.dart');
   }
 
-  String get emailRegex =>  r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
-  String get passwordRegex =>  r'^.{6,}$';
-  String get usernameRegex =>  r'^.{4,}$';
-
   // ignore: unused_element
   String get _content => '''
 class AppRegex {
@@ -48,9 +44,11 @@ class AppRegex {
 
   AppRegex._init();
 
-  final String emailRegex = $emailRegex;
-  final String passwordRegex = $passwordRegex;
-  final String usernameRegex = $usernameRegex;
+  // Remove the \ sign before the \$ sign.
+
+  final String emailRegex = r"^[a-zA-Z0-9.a-zA-Z0-9.!#\$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
+  final String passwordRegex = r'^.{6,}\$';
+  final String usernameRegex = r'^.{4,}\$';
 }
 ''';
 }

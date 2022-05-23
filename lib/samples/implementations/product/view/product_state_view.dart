@@ -1,4 +1,3 @@
-import 'package:path/path.dart';
 import 'package:recase/recase.dart';
 import '../../../../utils/directory.dart';
 import '../../../sample.dart';
@@ -10,7 +9,7 @@ class ProductStateView extends Sample {
     this.dirName,
   ) : super(path);
 
-  String get modelName {
+  String get viewName {
     final screenName = '$dirName' 'View';
     return ReCase(screenName).pascalCase;
   }
@@ -37,13 +36,13 @@ class ProductStateView extends Sample {
   // ignore: unused_element
   String get _content => '''
 import 'package:flutter/material.dart';
-import '../../../core/view/base/base_state.dart';
+import '../../core/init/view/base/base_state.dart';
 
-class $dirname extends StatefulWidget {
+class $viewName extends StatefulWidget {
 @override
-_$dirname''State createState() => _$dirname''State();
+_$viewName''State createState() => _$viewName''State();
 }
-class _$dirname''State extends BaseState<$dirname> {
+class _$viewName''State extends BaseState<$viewName> {
 @override
 Widget build(BuildContext context) {
 return Scaffold();

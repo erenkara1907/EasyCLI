@@ -1,4 +1,3 @@
-import 'package:path/path.dart';
 import 'package:recase/recase.dart';
 import '../../../../utils/directory.dart';
 import '../../../sample.dart';
@@ -18,9 +17,6 @@ class ProductService extends Sample {
   @override
   String get content => _content;
 
-  String get import => '''import '../model/$dirname'_'model.dart';;
-''';
-
   @override
   String get exportContent => '''export '$dirName'_'service.dart';
 ''';
@@ -39,11 +35,9 @@ class ProductService extends Sample {
 
   // ignore: unused_element
   String get _content => '''
-import 'package:shoppi_app/core/service/shoppi_dio_service.dart';
-import '../../../core/service/base_service.dart';
-$import
+import '../../core/init/service/base_service.dart';
 
-class $dirName extends BaseService {
+class $serviceName extends BaseService {
   // Future<List<Product>> fetchProducts() async {
   //   final response = await service.make<Product>(serviceConstants.product,
   //       parserModel: Product(), method: MethodType.GET);
