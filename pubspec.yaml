@@ -1,7 +1,7 @@
 name: easy_cli
 description: >-
   CLI utility that generates a folder structure to reduce the repetitive work required to setup directories for models, services, repositories, screens and widgets.
-version: 0.2.0
+version: 0.2.3
 
 homepage: https://github.com/RyanDsilva/feature_folder_cli
 
@@ -18,6 +18,7 @@ dependencies:
   args: ^2.1.1
   path: ^1.8.0
   recase: ^4.0.0
+  logger: ^1.1.0
 
 dev_dependencies:
   test: ^1.17.10

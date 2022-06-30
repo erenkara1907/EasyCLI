@@ -36,80 +36,66 @@ class Theme extends Sample {
   // ignore: unused_element
   String get _content => '''
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import '../../../manager/cache/shared_pref.dart';
+import 'light_theme_color.dart';
+import 'dark_theme_color.dart';
+import 'app_style.dart';
 
-final ThemeData appTheme = ThemeData( 
-  shadowColor: const Color.fromRGBO(145, 85, 253, 0.50),
-  primaryColor: const Color.fromRGBO(145, 85, 253, 1),
-  primaryColorDark: const Color.fromRGBO(133, 141, 147, 1),
-  backgroundColor: const Color.fromRGBO(244, 245, 250, 1),
-  textSelectionTheme: const TextSelectionThemeData(
-    selectionColor: Color.fromRGBO(68, 53, 65, 1),
-  ),
-  dividerColor: const Color.fromRGBO(235, 234, 237, 1),
-  primaryColorLight: const Color.fromRGBO(58, 53, 65, 0.68), 
-  splashColor: const Color.fromRGBO(58, 53, 65, 0.23),
-  highlightColor: Colors.white,
-  toggleableActiveColor: const Color.fromRGBO(58, 53, 65, 0.87),
-  scaffoldBackgroundColor: const Color.fromRGBO(255, 255, 255, 1),
-  hoverColor: const Color.fromRGBO(189, 189, 189, 1),
-  canvasColor: const Color.fromRGBO(248, 248, 248, 1),
-  selectedRowColor: const Color.fromRGBO(255, 180, 0, 1),
-  secondaryHeaderColor: const Color.fromRGBO(242, 242, 242, 1),
-  focusColor: const Color.fromRGBO(58, 53, 65, 0.38),
-  textTheme: const TextTheme(
-    headline1: TextStyle( 
-        fontSize: 96,
-        fontWeight: FontWeight.w300,
-        color: Color.fromRGBO(68, 53, 65, 1)),
-    headline2: TextStyle(
-        fontSize: 60,
-        fontWeight: FontWeight.w300,
-        color: Color.fromRGBO(68, 53, 65, 1)),
-    headline3: TextStyle(
-        fontSize: 48, 
-        fontWeight: FontWeight.w400,
-        color: Color.fromRGBO(68, 53, 65, 1)),
-    headline4: TextStyle(
-        fontSize: 34,
-        fontWeight: FontWeight.w400,
-        color: Color.fromRGBO(68, 53, 65, 1)),
-    headline5: TextStyle(
-        fontSize: 24,
-        fontWeight: FontWeight.w400,
-        color: Color.fromRGBO(68, 53, 65, 1)),
-    headline6: TextStyle(
-        fontSize: 20,
-        fontWeight: FontWeight.w500,
-        color: Color.fromRGBO(68, 53, 65, 1)),
-    subtitle1: TextStyle(
-        fontSize: 16,
-        fontWeight: FontWeight.w400,
-        color: Color.fromRGBO(68, 53, 65, 1)),
-    subtitle2: TextStyle(
-        fontSize: 14,
-        fontWeight: FontWeight.w500,
-        color: Color.fromRGBO(68, 53, 65, 1)),
-    bodyText1: TextStyle(
-      fontSize: 14,
-      fontWeight: FontWeight.w400,
-      color: Color.fromRGBO(68, 53, 65, 1),
-    ),
-    bodyText2: TextStyle(
-      fontSize: 14,
-      fontWeight: FontWeight.w400,
-      color: Color.fromRGBO(68, 53, 65, 1),
-    ),
-    caption: TextStyle(
-      fontSize: 12,
-      fontWeight: FontWeight.w400,
-      color: Color.fromRGBO(68, 53, 65, 1),
-    ),
-    overline: TextStyle(
-      fontSize: 12,
-      fontWeight: FontWeight.w400,
-      color: Color.fromRGBO(68, 53, 65, 1),
-    ),
-  ),
-);
+class AppTheme {
+  static getThemeData({required bool isLight}){
+    return ThemeData(
+        // main color (app bar,tabs..etc)
+        primaryColor: isLight ? LightThemeColors.primaryColor : DarkThemeColors.primaryColor,
+        // secondary color (for checkbox,float button, radio..etc)
+        accentColor: isLight ? LightThemeColors.accentColor : DarkThemeColors.accentColor,
+        // color contrast (if the theme is dark text should be white for example)
+        brightness: isLight ? Brightness.light : Brightness.dark,
+        // card widget background color
+        cardColor: isLight ? LightThemeColors.cardColor : DarkThemeColors.cardColor,
+        // hint text color
+        hintColor: isLight ? LightThemeColors.hintTextColor : DarkThemeColors.hintTextColor,
+        // divider color
+        dividerColor: isLight ? LightThemeColors.dividerColor : DarkThemeColors.dividerColor,
+        // app background color
+        backgroundColor: isLight ? LightThemeColors.backgroundColor : DarkThemeColors.backgroundColor,
+        scaffoldBackgroundColor: isLight ? LightThemeColors.scaffoldBackgroundColor : DarkThemeColors.scaffoldBackgroundColor,
+
+        // progress bar theme
+        progressIndicatorTheme: ProgressIndicatorThemeData(
+          color: isLight ? LightThemeColors.primaryColor : DarkThemeColors.primaryColor,
+        ),
+
+        // appBar theme
+        appBarTheme: MyStyles.getAppBarTheme(isLightTheme: isLight),
+
+        // elevated button theme
+        elevatedButtonTheme: MyStyles.getElevatedButtonTheme(isLightTheme: isLight),
+
+        // text theme
+        textTheme: MyStyles.getTextTheme(isLightTheme: isLight),
+
+        // chip theme
+        chipTheme: MyStyles.getChipTheme(isLightTheme: isLight),
+
+        // icon theme
+        iconTheme: MyStyles.getIconTheme(isLightTheme: isLight),
+    );
+  }
+
+  /// update app theme and save theme type to shared pref
+  /// (so when the app is killed and up again theme will remain the same)
+  static changeTheme(){
+    // *) check if the current theme is light (default is light)
+    bool isLightTheme = MySharedPref.getThemeIsLight();
+    // *) store the new theme mode on get storage
+    MySharedPref.setThemeIsLight(!isLightTheme);
+    // *) let GetX change theme
+    Get.changeThemeMode(!isLightTheme ? ThemeMode.light : ThemeMode.dark);
+  }
+
+  /// check if the theme is light or dark
+  bool get getThemeIsLight => MySharedPref.getThemeIsLight();
+}
 ''';
 }

@@ -9,7 +9,7 @@ class ProductViewmodel extends Sample {
     this.dirName,
   ) : super(path);
 
-  String get modelName {
+  String get viewmodelName {
     final screenName = '$dirName' 'ViewModel';
     return ReCase(screenName).pascalCase;
   }
@@ -36,9 +36,11 @@ class ProductViewmodel extends Sample {
   // ignore: unused_element
   String get _content => '''
 import '../../core/init/viewmodel/base_viewmodel.dart';
+import 'package:flutter/material.dart';
 
-class $dirName extends BaseViewModel {
- // Some code
+class $viewmodelName extends BaseViewModel {
+  @override
+  void setContext(BuildContext context) => this.context = context;
 }
 ''';
 }

@@ -1,4 +1,4 @@
-## 0.1.4
+## 0.2.3
 
 * Ability to generate screen, widgets
 * Ability to generate data models

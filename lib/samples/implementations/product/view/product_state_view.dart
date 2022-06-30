@@ -14,6 +14,8 @@ class ProductStateView extends Sample {
     return ReCase(screenName).pascalCase;
   }
 
+  String get state => '_$dirName' 'State';
+
   @override
   String get content => _content;
 
@@ -40,9 +42,9 @@ import '../../core/init/view/base/base_state.dart';
 
 class $viewName extends StatefulWidget {
 @override
-_$viewName''State createState() => _$viewName''State();
+$state createState() => $state();
 }
-class _$viewName''State extends BaseState<$viewName> {
+class $state extends BaseState<$viewName> {
 @override
 Widget build(BuildContext context) {
 return Scaffold();
