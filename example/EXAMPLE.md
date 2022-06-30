@@ -1,25 +1,59 @@
-# Example
+Example main.dart
 
-> This folder contains the files generated from the cli utility
+```md
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'core/manager/cache/shared_pref.dart';
+import 'app/routes/app_pages.dart';
+import 'config/theme/my_theme.dart';
+import 'config/translations/localization_service.dart';
 
+Future<void> main() async {
+  // wait for bindings
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // init shared preference
+  await MySharedPref.init();
+
+  runApp(
+    ScreenUtilInit(
+      // xd art board size
+      designSize: const Size(375, 812),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (context, widget) {
+        return GetMaterialApp(
+              title: "GetXSkeleton",
+              useInheritedMediaQuery: true,
+              debugShowCheckedModeBanner: false,
+              builder: (context,widget) {
+                bool themeIsLight = MySharedPref.getThemeIsLight();
+                return Theme(
+                  data: MyTheme.getThemeData(isLight: themeIsLight),
+                  child: MediaQuery(
+                    // prevent font from scalling (some people use big/small device fonts)
+                    // but we want our app font to still the same and dont get affected
+                    data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                    child: widget!,
+                  ),
+                );
+              },
+              initialRoute: AppPages.INITIAL, // first screen to show when app is running
+              getPages: AppPages.routes, // app screens
+              locale: MySharedPref.getCurrentLocal(), // app language
+              translations: LocalizationService(), // localization services in app (controller app language)
+            );
+      },
+    ),
+  );
+}
 ```
-feature1/
-┣ domain/
-┃ ┣ models/
-┃ ┃ ┗ feature1_model.dart
-┃ ┣ repository/
-┃ ┃ ┗ feature1_repository.dart
-┃ ┣ services/
-┃ ┃ ┗ feature1_service.dart
-┃ ┗ feature1_domain.dart
-┣ providers/
-┃ ┣ feature1_provider.dart
-┃ ┗ providers.dart
-┣ screens/
-┃ ┣ feature1_screen.dart
-┃ ┗ screens.dart
-┣ widgets/
-┃ ┣ feature1_widget.dart
-┃ ┗ widgets.dart
-┗ index.dart
+
+## Command Usage :wrench:
+> Make sure you are in the root of your project
+```sh
+easy generate -n <project_name>
 ```
+
+:copyright: 2022 Eren KARA
