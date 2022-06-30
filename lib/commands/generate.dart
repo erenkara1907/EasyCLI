@@ -1,23 +1,38 @@
+// ignore_for_file: lines_longer_than_80_chars
+
 import 'package:args/command_runner.dart';
+import '../samples/implementations/core/config/app_localization_service.dart';
+import '../samples/implementations/core/config/app_strings.dart';
+import '../samples/implementations/core/config/en_US/en_us_translation.dart';
+import '../samples/implementations/core/config/tr_TR/tr_tr_translation.dart';
 import '../samples/implementations/core/constants/app_icon.dart';
 import '../samples/implementations/core/constants/app_icon.svg.dart';
 import '../samples/implementations/core/constants/app_regex.dart';
+import '../samples/implementations/core/constants/enum/api_call_status_enum.dart';
 import '../samples/implementations/core/extension.dart';
 import '../samples/implementations/core/init/service/base_service.dart';
 import '../samples/implementations/core/init/service/dio_service.dart';
 import '../samples/implementations/core/init/view/base/base_state.dart';
 import '../samples/implementations/core/init/view/base/base_stateless.dart';
+import '../samples/implementations/core/init/view/theme/app_fonts.dart';
+import '../samples/implementations/core/init/view/theme/app_style.dart';
+import '../samples/implementations/core/init/view/theme/dark_theme_color.dart';
+import '../samples/implementations/core/init/view/theme/light_theme_color.dart';
 import '../samples/implementations/core/init/view/theme/theme.dart';
+import '../samples/implementations/core/init/view/widget/animator/app_widget_animator.dart';
 import '../samples/implementations/core/init/view/widget/button/app_button.dart';
 import '../samples/implementations/core/init/view/widget/card/app_card.dart';
 import '../samples/implementations/core/init/view/widget/checkbox/app_checkbox.dart';
 import '../samples/implementations/core/init/view/widget/form/app_form.dart';
 import '../samples/implementations/core/init/view/widget/slider/app_slider.dart';
+import '../samples/implementations/core/init/view/widget/sncakbar/app_snackbar.dart';
 import '../samples/implementations/core/init/view/widget/textformfield/app_textformfield.dart';
 import '../samples/implementations/core/init/viewmodel/base_viewmodel.dart';
 import '../samples/implementations/core/language.dart';
+import '../samples/implementations/core/logger.dart';
 import '../samples/implementations/core/manager/auth/auth_manager.dart';
 import '../samples/implementations/core/manager/cache/cache_manager.dart';
+import '../samples/implementations/core/manager/cache/shared_pref.dart';
 import '../samples/implementations/core/model.dart';
 import '../samples/implementations/feature/components/button/app_text_button.dart';
 import '../samples/implementations/product/model/product_model.dart';
@@ -65,57 +80,83 @@ class GenerateCommand extends Command {
       dir = 'example';
     }
 
-    // ignore: lines_longer_than_80_chars
+
     Model(DirectoryService.paths[dir]!, argResults!['name'].toString())..create();
-    // ignore: lines_longer_than_80_chars
+
     Language(DirectoryService.paths[dir]!, argResults!['name'].toString())..create();
-    // ignore: lines_longer_than_80_chars
+
     Extension(DirectoryService.paths[dir]!, argResults!['name'].toString())..create();
-    // ignore: lines_longer_than_80_chars
+
     CacheManager(DirectoryService.paths[dir]!, argResults!['name'].toString())..create();
-    // ignore: lines_longer_than_80_chars
+
     AuthManager(DirectoryService.paths[dir]!, argResults!['name'].toString())..create();
-    // ignore: lines_longer_than_80_chars
+
     BaseService(DirectoryService.paths[dir]!, argResults!['name'].toString())..create();
-    // ignore: lines_longer_than_80_chars
+
     DioService(DirectoryService.paths[dir]!, argResults!['name'].toString())..create();
-    // ignore: lines_longer_than_80_chars
+
     BaseViewModel(DirectoryService.paths[dir]!, argResults!['name'].toString())..create();
-    // ignore: lines_longer_than_80_chars
+
     BaseState(DirectoryService.paths[dir]!, argResults!['name'].toString())..create();
-    // ignore: lines_longer_than_80_chars
+
     BaseStateless(DirectoryService.paths[dir]!, argResults!['name'].toString())..create();
-    // ignore: lines_longer_than_80_chars
+
     Theme(DirectoryService.paths[dir]!, argResults!['name'].toString())..create();
-    // ignore: lines_longer_than_80_chars
+
     AppButton(DirectoryService.paths[dir]!, argResults!['name'].toString())..create();
-    // ignore: lines_longer_than_80_chars
+
     AppCard(DirectoryService.paths[dir]!, argResults!['name'].toString())..create();
-    // ignore: lines_longer_than_80_chars
+
     AppCheckbox(DirectoryService.paths[dir]!, argResults!['name'].toString())..create();
-    // ignore: lines_longer_than_80_chars
+
     AppForm(DirectoryService.paths[dir]!, argResults!['name'].toString())..create();
-    // ignore: lines_longer_than_80_chars
+
     AppSlider(DirectoryService.paths[dir]!, argResults!['name'].toString())..create();
-    // ignore: lines_longer_than_80_chars
+
     AppTextFormField(DirectoryService.paths[dir]!, argResults!['name'].toString())..create();
-    // ignore: lines_longer_than_80_chars
+
     AppIcon(DirectoryService.paths[dir]!, argResults!['name'].toString())..create();
-    // ignore: lines_longer_than_80_chars
+
     AppIconSvg(DirectoryService.paths[dir]!, argResults!['name'].toString())..create();
-    // ignore: lines_longer_than_80_chars
+
     AppRegex(DirectoryService.paths[dir]!, argResults!['name'].toString())..create();
-    // ignore: lines_longer_than_80_chars
+
     AppTextButton(DirectoryService.paths[dir]!, argResults!['name'].toString())..create();
-    // ignore: lines_longer_than_80_chars
+
     ProductModel(DirectoryService.paths[dir]!, argResults!['name'].toString())..create();
-    // ignore: lines_longer_than_80_chars
+
     ProductService(DirectoryService.paths[dir]!, argResults!['name'].toString())..create();
-    // ignore: lines_longer_than_80_chars
+
     ProductStateView(DirectoryService.paths[dir]!, argResults!['name'].toString())..create();
-    // ignore: lines_longer_than_80_chars
+
     ProductStatelessView(DirectoryService.paths[dir]!, argResults!['name'].toString())..create();
-    // ignore: lines_longer_than_80_chars
+
     ProductViewmodel(DirectoryService.paths[dir]!, argResults!['name'].toString())..create();
+
+    AppLogger(DirectoryService.paths[dir]!, argResults!['name'].toString())..create();
+
+    SharedPref(DirectoryService.paths[dir]!, argResults!['name'].toString())..create();
+
+    AppWidgetAnimator(DirectoryService.paths[dir]!, argResults!['name'].toString())..create();
+
+    AppSnackbar(DirectoryService.paths[dir]!, argResults!['name'].toString())..create();
+
+    AppFonts(DirectoryService.paths[dir]!, argResults!['name'].toString())..create();
+
+    AppStyle(DirectoryService.paths[dir]!, argResults!['name'].toString())..create();
+
+    DarkThemeColor(DirectoryService.paths[dir]!, argResults!['name'].toString())..create();
+
+    LightThemeColor(DirectoryService.paths[dir]!, argResults!['name'].toString())..create();
+
+    ApiCallStatusEnum(DirectoryService.paths[dir]!, argResults!['name'].toString())..create();
+
+    AppStrings(DirectoryService.paths[dir]!, argResults!['name'].toString())..create();
+
+    AppLocalizationService(DirectoryService.paths[dir]!, argResults!['name'].toString())..create();
+
+    TrTrTranslation(DirectoryService.paths[dir]!, argResults!['name'].toString())..create();
+
+    EnUsTranslation(DirectoryService.paths[dir]!, argResults!['name'].toString())..create();
   }
 }
